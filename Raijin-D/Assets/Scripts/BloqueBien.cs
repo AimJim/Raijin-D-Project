@@ -24,8 +24,10 @@ public class BloqueBien : MonoBehaviour
     float nitroRatio;
     [SerializeField]
     float downforce;
+    [SerializeField]
+    private LayerMask layerMask;
 
-    
+
     float currentSpeed = 0;
     float accelInput;
     float brakeInput;
@@ -37,6 +39,7 @@ public class BloqueBien : MonoBehaviour
     bool drifting;
     bool changeSize;
     bool canAccelerate;
+    int groundColision = 0;
     
     [SerializeField]
     Rigidbody carRB;
@@ -60,7 +63,7 @@ public class BloqueBien : MonoBehaviour
         handbrakeInput = Input.GetKey(KeyCode.Space); //cambiar todos los inputs
         changeSizeInput = Input.GetKeyDown(KeyCode.O);
         nitroInput = Input.GetKey(KeyCode.P);
-        Debug.Log(currentSpeed);
+       // Debug.Log(currentSpeed);
         //No es de fisica
         if (changeSizeInput)
         {
@@ -73,25 +76,53 @@ public class BloqueBien : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (layerMask == (layerMask | 1 << collision.gameObject.layer/*esto mueve un 1 el nùmero de veces que es su layer*/))
+            {
+            //Debug.Log("piso");
+            groundColision++;
+            }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (layerMask == (layerMask | 1 << collision.gameObject.layer/*esto mueve un 1 el nùmero de veces que es su layer*/))
+        {
+            //Debug.Log("piso");
+            groundColision--;
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (canAccelerate)
+        if (groundColision > 0)
         {
-            currentSpeed += acceleration * accelInput * Time.deltaTime;//Se calcula siempre que la aceleracion sea posible
-        }
-       
-        if (handbrakeInput || drifting)
-        {
-            drifting = true;
-            HandBrake();
+            if (canAccelerate)
+            {
+                currentSpeed += acceleration * accelInput * Time.deltaTime;//Se calcula siempre que la aceleracion sea posible
+            }
+
+            if (handbrakeInput || (drifting && steerOG == steerInput))
+            {
+                drifting = true;
+                HandBrake();
+            } 
+            else
+            {
+                Accelerate();
+                Steer();
+                Brake();
+                drifting = false;
+               // Debug.Log("Fin drift");
+            }
         } else
         {
             Accelerate();
-            Steer();
-            Brake();
         }
-       
-        
+
+
+        Debug.Log("Pison´t");
         LimitSpeed();
         Friction();
         DownForce();
@@ -150,6 +181,8 @@ public class BloqueBien : MonoBehaviour
         }
     }
 
+    
+
     void Accelerate()
     {
         
@@ -175,28 +208,39 @@ public class BloqueBien : MonoBehaviour
 
     void Steer()
     {
-        if(currentSpeed > 1 || currentSpeed < -1)
+        if(currentSpeed > 0.1 || currentSpeed < -0.1)
         {
             carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * steerInput * steer * Time.deltaTime));
         }
        
     }
 
+    private float steerOG = 0;
     void HandBrake()
     {
+        //Va raro
         drifting = steerInput != 0 && accelInput > 0;
-       
+
+        if (handbrakeInput && !drifting)
+        {
+            steerOG = steerInput;
+        }
+
+        Debug.Log("Iniciando drift");
+
+        carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * handBrakeAngle * steerInput * Time.deltaTime));
+
+        carRB.MovePosition(transform.position + new Vector3(-steerInput, 0, 0) * currentSpeed * 0.3f + transform.forward * currentSpeed * 0.5f);
+        
            
-        carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * handBrakeAngle * steerInput * Time.deltaTime) );
-            
-        carRB.MovePosition(transform.position + new Vector3(-steerInput, 0, 0) * currentSpeed*0.7f + transform.forward * currentSpeed*0.7f);
+      
         
         
     }
 
     void DownForce()
     {
-        carRB.AddForce(-Vector3.up * downforce);
+        carRB.AddForce(-transform.up * downforce);
     }
 }
 
