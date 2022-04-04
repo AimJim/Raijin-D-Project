@@ -100,7 +100,7 @@ public class BloqueBien : MonoBehaviour
         {
             if (canAccelerate)
             {
-                currentSpeed += acceleration * accelInput * Time.deltaTime;//Se calcula siempre que la aceleracion sea posible
+                Accelerate();//Se calcula siempre que la aceleracion sea posible
             }
 
             if (handbrakeInput || (drifting && steerOG == steerInput))
@@ -110,7 +110,7 @@ public class BloqueBien : MonoBehaviour
             } 
             else
             {
-                Accelerate();
+               // Accelerate();
                 Steer();
                 Brake();
                 drifting = false;
@@ -118,13 +118,13 @@ public class BloqueBien : MonoBehaviour
             }
         } else
         {
-            Accelerate();
+           // Accelerate();
         }
 
 
         Debug.Log("Pison´t");
         LimitSpeed();
-        Friction();
+       // Friction();
         DownForce();
         
         
@@ -167,17 +167,18 @@ public class BloqueBien : MonoBehaviour
     }
     void Brake()
     {
-        currentSpeed -= brake * brakeInput * Time.deltaTime;
+        carRB.velocity -= transform.forward * brake * brakeInput ;
     }
 
     void Friction()
     {
         if (accelInput == 0 && currentSpeed > 0 || !canAccelerate)
         {
-            currentSpeed -= acceleration * Time.deltaTime;
+            carRB.velocity -= transform.forward * acceleration;
+            
         } else if( brakeInput == 0 && currentSpeed < 0)
         {
-            currentSpeed += brake * Time.deltaTime;
+            carRB.velocity += transform.forward * acceleration ;
         }
     }
 
@@ -185,21 +186,22 @@ public class BloqueBien : MonoBehaviour
 
     void Accelerate()
     {
-        
-        
-        carRB.MovePosition(transform.position + transform.forward * currentSpeed);
+
+
+        carRB.velocity += transform.forward * acceleration * accelInput;
+        Debug.Log("Acelera");
         
   
     }
 
     void LimitSpeed()
     {
-        if(currentSpeed > maxSpeed)
+        if(carRB.velocity.magnitude > maxSpeed)
         {
             canAccelerate = false; //Sino, al desactivar el nitro, la velocidad salta y no hace "friccion"
         } else if(currentSpeed < maxSpeedBackwards)
         {
-            currentSpeed = maxSpeedBackwards; //Marcha atras lo del nitro no da problema
+            carRB.velocity = transform.forward *  maxSpeedBackwards; //Marcha atras lo del nitro no da problema
         } else
         {
             canAccelerate = true;
@@ -208,7 +210,7 @@ public class BloqueBien : MonoBehaviour
 
     void Steer()
     {
-        if(currentSpeed > 0.1 || currentSpeed < -0.1)
+        if(carRB.velocity.magnitude > 0.1 || carRB.velocity.magnitude < -0.1)
         {
             carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * steerInput * steer * Time.deltaTime));
         }
@@ -230,7 +232,7 @@ public class BloqueBien : MonoBehaviour
 
         carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * handBrakeAngle * steerInput * Time.deltaTime));
 
-        carRB.MovePosition(transform.position + new Vector3(-steerInput, 0, 0) * currentSpeed * 0.3f + transform.forward * currentSpeed * 0.5f);
+        carRB.velocity += (new Vector3(-steerInput, 0, 0) * currentSpeed * 0.3f );
         
            
       
