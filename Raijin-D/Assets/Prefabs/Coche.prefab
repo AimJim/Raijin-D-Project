@@ -258,7 +258,7 @@ MonoBehaviour:
   maxSpeed: 200
   acceleration: 6
   steer: 45
-  handBrakeAngle: 30
+  handBrakeAngle: 90
   brake: 20
   maxSpeedBackwards: 1
   changeRatio: 10
