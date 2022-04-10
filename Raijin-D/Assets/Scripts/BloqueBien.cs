@@ -32,6 +32,7 @@ public class BloqueBien : MonoBehaviour
     float accelInput;
     float brakeInput;
     float steerInput;
+    float diferenciaSonido=150;
     bool handbrakeInput;
     bool changeSizeInput;
     bool nitroInput;
@@ -40,22 +41,28 @@ public class BloqueBien : MonoBehaviour
     bool changeSize;
     bool canAccelerate;
     int groundColision = 0;
+
+    AudioSource sonido;
     
     [SerializeField]
     Rigidbody carRB;
 
     private void Awake()
     {
+        
         carRB = GetComponent<Rigidbody>();
         maxSpeedBackwards = -maxSpeedBackwards;
         changeRatio = changeRatio / 100;
         nitroRatio = nitroRatio / 100;
         maxSpeedOG = maxSpeed;
         accelerationOG = acceleration;
+        sonido = GetComponent<AudioSource>();
+
     }
 
     private void Update()
     {
+        sonido.pitch = carRB.velocity.magnitude / diferenciaSonido;
         //Get inputs
         accelInput = Mathf.Clamp(Input.GetAxis("Vertical"),0,1);
         brakeInput = -Mathf.Clamp(Input.GetAxis("Vertical"), -1, 0);
@@ -152,12 +159,14 @@ public class BloqueBien : MonoBehaviour
     {
         if (!changeSize)
         {
+            diferenciaSonido *= changeRatio;
             transform.localScale = transform.localScale * changeRatio;
             maxSpeed = maxSpeed * changeRatio;
             maxSpeedBackwards = maxSpeedBackwards * changeRatio;
             changeSize = !changeSize;
         } else
         {
+            diferenciaSonido /= changeRatio;
             transform.localScale = transform.localScale / changeRatio;
             transform.position = transform.position + new Vector3(0, 0.5f, 0);
             maxSpeed = maxSpeed / changeRatio;

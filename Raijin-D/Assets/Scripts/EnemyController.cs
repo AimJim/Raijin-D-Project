@@ -23,14 +23,17 @@ public class EnemyController : MonoBehaviour
     Rigidbody carRB;
 
     bool canAccelerate = true;
+    AudioSource sonidoEnemigo;
 
     int currentCheckPoint = 0;
     private void Awake()
     {
+        sonidoEnemigo = GetComponent<AudioSource>();
         carRB = GetComponent<Rigidbody>();
     }
     private void FixedUpdate()
     {
+        sonidoEnemigo.pitch = carRB.velocity.magnitude / 150;
         if (canAccelerate)
         {
             Accelerate();
