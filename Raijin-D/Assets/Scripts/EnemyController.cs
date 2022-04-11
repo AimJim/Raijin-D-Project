@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     float maxAngle;
     [SerializeField]
     float downforce;
-    
+  
     Rigidbody carRB;
 
     bool canAccelerate = true;
