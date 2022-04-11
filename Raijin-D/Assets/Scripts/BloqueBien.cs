@@ -60,6 +60,7 @@ public class BloqueBien : MonoBehaviour
 
     private void Awake()
     {
+        inputActionAsset.Enable();
         
         carRB = GetComponent<Rigidbody>();
         maxSpeedBackwards = -maxSpeedBackwards;
