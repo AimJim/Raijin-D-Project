@@ -9,7 +9,7 @@
                     "name": "Acceleration",
                     "type": "Value",
                     "id": "74d25e38-0d88-4914-a0d8-aea9b6eda94e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 },
@@ -17,7 +17,7 @@
                     "name": "Brake&Backwards",
                     "type": "Value",
                     "id": "c75c2ad3-d0ca-4884-9644-277e29d57cde",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 },

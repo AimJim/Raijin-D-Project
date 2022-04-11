@@ -45,11 +45,18 @@ public class BloqueBien : MonoBehaviour
     bool canAccelerate;
     int groundColision = 0;
 
-    InputAction moveAction;
+    InputAction steerAction;
+    InputAction accelAction;
+    InputAction brakeAction;
+    InputAction nitroAction;
+    InputAction changeSizeAction;
+    InputAction handbrakeAction;
     AudioSource sonido;
     
     [SerializeField]
     Rigidbody carRB;
+   
+    
 
     private void Awake()
     {
@@ -61,7 +68,13 @@ public class BloqueBien : MonoBehaviour
         maxSpeedOG = maxSpeed;
         accelerationOG = acceleration;
         sonido = GetComponent<AudioSource>();
-        moveAction = inputActionAsset.FindAction("Car");
+        steerAction = inputActionAsset.FindAction("Steer");
+        accelAction = inputActionAsset.FindAction("Acceleration");
+        brakeAction = inputActionAsset.FindAction("Brake&Backwards");
+        nitroAction = inputActionAsset.FindAction("Nitro");
+        changeSizeAction = inputActionAsset.FindAction("ChangeSize");
+        handbrakeAction = inputActionAsset.FindAction("HandBrake");
+        
 
     }
 
@@ -70,12 +83,13 @@ public class BloqueBien : MonoBehaviour
         sonido.pitch = carRB.velocity.magnitude / diferenciaSonido;
         //Get inputs
         //var movement = moveAction.ReadValue<Vector2>();
-        accelInput = Mathf.Clamp(Input.GetAxis("Vertical"),0,1);
-        brakeInput = -Mathf.Clamp(Input.GetAxis("Vertical"), -1, 0);
-        steerInput = Mathf.Clamp(Input.GetAxis("Horizontal"), -1, 1);
-        handbrakeInput = Input.GetKey(KeyCode.Space); //cambiar todos los inputs
-        changeSizeInput = Input.GetKeyDown(KeyCode.O);
-        nitroInput = Input.GetKey(KeyCode.P);
+      
+        accelInput = Mathf.Clamp(accelAction.ReadValue<Vector2>().y,0,1);
+        brakeInput = -Mathf.Clamp(brakeAction.ReadValue<Vector2>().y, -1, 0);
+        steerInput = Mathf.Clamp(steerAction.ReadValue<Vector2>().x, -1, 1);
+        handbrakeInput = handbrakeAction.triggered; //cambiar todos los inputs
+        changeSizeInput = changeSizeAction.triggered;
+        nitroInput = nitroAction.triggered;
        // Debug.Log(currentSpeed);
         //No es de fisica
         if (changeSizeInput)
