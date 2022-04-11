@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BloqueBien : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class BloqueBien : MonoBehaviour
     float downforce;
     [SerializeField]
     private LayerMask layerMask;
+    [SerializeField]
+    private InputActionAsset inputActionAsset;
 
 
     float currentSpeed = 0;
@@ -42,6 +45,7 @@ public class BloqueBien : MonoBehaviour
     bool canAccelerate;
     int groundColision = 0;
 
+    InputAction moveAction;
     AudioSource sonido;
     
     [SerializeField]
@@ -57,6 +61,7 @@ public class BloqueBien : MonoBehaviour
         maxSpeedOG = maxSpeed;
         accelerationOG = acceleration;
         sonido = GetComponent<AudioSource>();
+        moveAction = inputActionAsset.FindAction("Car");
 
     }
 
@@ -64,6 +69,7 @@ public class BloqueBien : MonoBehaviour
     {
         sonido.pitch = carRB.velocity.magnitude / diferenciaSonido;
         //Get inputs
+        //var movement = moveAction.ReadValue<Vector2>();
         accelInput = Mathf.Clamp(Input.GetAxis("Vertical"),0,1);
         brakeInput = -Mathf.Clamp(Input.GetAxis("Vertical"), -1, 0);
         steerInput = Mathf.Clamp(Input.GetAxis("Horizontal"), -1, 1);
