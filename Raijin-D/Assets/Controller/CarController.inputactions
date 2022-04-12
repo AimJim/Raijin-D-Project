@@ -31,7 +31,7 @@
                 },
                 {
                     "name": "Nitro",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "1816bb84-38c3-4887-bd1e-a977b61ec92e",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -47,7 +47,7 @@
                 },
                 {
                     "name": "HandBrake",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "fab4305c-fb26-4178-a7e2-6484dd693fae",
                     "expectedControlType": "Button",
                     "processors": "",

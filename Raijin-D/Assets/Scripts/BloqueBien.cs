@@ -29,6 +29,7 @@ public class BloqueBien : MonoBehaviour
     private LayerMask layerMask;
     [SerializeField]
     private InputActionAsset inputActionAsset;
+    
 
 
     float currentSpeed = 0;
@@ -36,6 +37,7 @@ public class BloqueBien : MonoBehaviour
     float brakeInput;
     float steerInput;
     float diferenciaSonido=150;
+
     bool handbrakeInput;
     bool changeSizeInput;
     bool nitroInput;
@@ -82,15 +84,14 @@ public class BloqueBien : MonoBehaviour
     private void Update()
     {
         sonido.pitch = carRB.velocity.magnitude / diferenciaSonido;
-        //Get inputs
-        //var movement = moveAction.ReadValue<Vector2>();
+       
       
-        accelInput = Mathf.Clamp(accelAction.ReadValue<Vector2>().y,0,1);
-        brakeInput = -Mathf.Clamp(brakeAction.ReadValue<Vector2>().y, -1, 0);
+        accelInput = Mathf.Clamp(accelAction.ReadValue<float>(),0,1);
+        brakeInput = -Mathf.Clamp(brakeAction.ReadValue<float>(), -1, 0);
         steerInput = Mathf.Clamp(steerAction.ReadValue<Vector2>().x, -1, 1);
-        handbrakeInput = handbrakeAction.triggered; //cambiar todos los inputs
+        handbrakeInput = handbrakeAction.ReadValue<float>() != 0;
         changeSizeInput = changeSizeAction.triggered;
-        nitroInput = nitroAction.triggered;
+        nitroInput = nitroAction.ReadValue<float>() != 0;
        // Debug.Log(currentSpeed);
         //No es de fisica
         if (changeSizeInput)
