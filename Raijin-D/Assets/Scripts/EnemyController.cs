@@ -26,10 +26,12 @@ public class EnemyController : MonoBehaviour
     AudioSource sonidoEnemigo;
 
     int currentCheckPoint = 0;
+    Transform currentDirection;
     private void Awake()
     {
         sonidoEnemigo = GetComponent<AudioSource>();
         carRB = GetComponent<Rigidbody>();
+        currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, 2));
     }
     private void FixedUpdate()
     {
@@ -47,7 +49,8 @@ public class EnemyController : MonoBehaviour
     {
         
        
-        transform.LookAt(checkPoints[currentCheckPoint].transform);
+        transform.LookAt(currentDirection);
+        Debug.Log(currentDirection.gameObject.name);
     }
     void DownForce()
     {
@@ -73,5 +76,6 @@ public class EnemyController : MonoBehaviour
     {
         currentCheckPoint++;
         currentCheckPoint = currentCheckPoint % checkPoints.Length;
+        currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, checkPoints[currentCheckPoint].transform.childCount));
     }
 }
