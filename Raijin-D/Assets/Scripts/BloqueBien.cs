@@ -58,7 +58,24 @@ public class BloqueBien : MonoBehaviour
     [SerializeField]
     Rigidbody carRB;
    
+    public bool getNitroActivated()
+    {
+        return nitroInput;
+    }
+
+    public float getSpeed()
+    {
+        return carRB.velocity.magnitude;
+    }
     
+    public float getSteer()
+    {
+        return steerInput;
+    }
+    public bool getDrift()
+    {
+        return drifting;
+    }
 
     private void Awake()
     {
