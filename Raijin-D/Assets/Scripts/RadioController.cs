@@ -14,7 +14,8 @@ public class RadioController : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = songList[0];
+        currentSong = Random.Range(0, songList.Length);
+        audioSource.clip = songList[currentSong];
     }
 
     void Update()
@@ -24,19 +25,11 @@ public class RadioController : MonoBehaviour
         {
             audioSource.clip = songList[currentSong];
             audioSource.Play();
-            StartCoroutine(playMusic());
+            currentSong = (currentSong + 1) % songList.Length;
+            
 
         }
     }
 
-    IEnumerator playMusic()
-    {
-        yield return new WaitForEndOfFrame();
-        
-         currentSong = (currentSong + 1) % songList.Length;
-            
-        
-        
-
-    }
+    
 }
