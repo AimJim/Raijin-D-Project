@@ -1,9 +1,34 @@
 fileFormatVersion: 2
-guid: 63b4061f658de8147b95a7c176199ed9
+guid: a16438dc78b5a56468381a7227d44384
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carroceria
+    second: {fileID: 2100000, guid: ef502da0a452ce649b8d62e13c854005, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Focos
+    second: {fileID: 2100000, guid: 91704a6d74e71034cb2da9133dc45224, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Luces_traseras
+    second: {fileID: 2100000, guid: 0125f525c3a6374458ea41e2715c2bac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tubo_de_escape
+    second: {fileID: 2100000, guid: cae1742a552e706458008db1edc0c0c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ventanas__Oscurecidas_jeje_
+    second: {fileID: 2100000, guid: 492695feb788d7642aad6d4017fa45b9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -34,14 +59,14 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 1.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
+    importCameras: 1
     importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
@@ -63,7 +88,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -85,7 +110,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 1.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
