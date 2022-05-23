@@ -441,6 +441,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451469110}
   m_Enabled: 1
+--- !u!64 &451469112
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451469110}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7878626895493265169, guid: 131fc98ea952c7941a8778d3fbd93baf, type: 3}
 --- !u!4 &451469114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 131fc98ea952c7941a8778d3fbd93baf, type: 3}
@@ -460,12 +474,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rspeed: 30
   listaAutos:
+  - {fileID: 148019454512896426, guid: a7d4fa77a67918644a8026b34b515c02, type: 3}
   - {fileID: 5299826273722238838, guid: c3ff42078e19809469bca2ee1c02085c, type: 3}
-  - {fileID: 919132149155446097, guid: 6d6415f7a36002048bc1f6ffcbe19930, type: 3}
-  - {fileID: 919132149155446097, guid: 85d49bf3b711b7b45b31261c88192c91, type: 3}
-  - {fileID: 919132149155446097, guid: 691e9ad63df5d1a4f8c9c913912c1934, type: 3}
+  - {fileID: 4942218753135698563, guid: 48e7005dec216334788a250024a6ab24, type: 3}
+  - {fileID: 280069616781688161, guid: d3c5ba74bebe33f42b461e1d4b3717a4, type: 3}
   - {fileID: 5840528913937262538, guid: 721748c329cf96049b250f6c7969ff99, type: 3}
+  - {fileID: 8145467434698633984, guid: 173506a50d2e6a0438a087501a25a21d, type: 3}
   Spawn: {fileID: 1079181182}
+  inputActionAsset: {fileID: -944628639613478452, guid: a71309cf3ba426643b4c27d0baa1cd87, type: 3}
 --- !u!1 &626566189
 GameObject:
   m_ObjectHideFlags: 0

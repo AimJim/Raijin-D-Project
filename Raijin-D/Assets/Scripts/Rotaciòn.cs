@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Rotaciòn : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class Rotaciòn : MonoBehaviour
     [SerializeField]
     private Transform Spawn;
     private GameObject vehiculo;
+    [SerializeField]
+    private InputActionAsset inputActionAsset;
+
+    InputAction selectAction;
+    InputAction confirmAction;
 
 
     private void Awake()
@@ -23,21 +29,33 @@ public class Rotaciòn : MonoBehaviour
        
         vehiculo = Instantiate(listaAutos[posLista]);
         vehiculo.transform.SetParent(gameObject.transform);
+        Destroy(vehiculo.GetComponentInChildren<Camera>());
+        Destroy(vehiculo.GetComponent<BloqueBien>());
+        Destroy(vehiculo.GetComponent<AudioSource>());
         posLista = (posLista + 1) % listaAutos.Length;
         vehiculo.transform.position = Spawn.position;
 
+        selectAction = inputActionAsset.FindAction("Steer");
+        confirmAction = inputActionAsset.FindAction("Nitro");
+
     }
+    bool change = true;
     private void Update()
     {
         plataforma.transform.rotation *= Quaternion.Euler(new Vector3(0, Rspeed, 0) * Time.deltaTime);
+        if(Mathf.Clamp(selectAction.ReadValue<Vector2>().x, -1, 1) == 0)
+        {
+            change = true;
+        }
         
-        if (Input.GetKeyDown(KeyCode.D)) //cambiar en el funturo;
+        if (Mathf.Clamp(selectAction.ReadValue<Vector2>().x, -1, 1) > 0.5 && change) //cambiar en el funturo;
         {
             Destroy(vehiculo);
             posLista = (posLista + 1) % listaAutos.Length;
             ColocarVehiculo();
+            change = false;
         }
-        else if (Input.GetKeyDown(KeyCode.A)) //cambiar en el funturo;
+        else if (Mathf.Clamp(selectAction.ReadValue<Vector2>().x, -1, 1) < -0.5 && change) //cambiar en el funturo;
         {
             Destroy(vehiculo);
             if (posLista > 0)
@@ -46,16 +64,26 @@ public class Rotaciòn : MonoBehaviour
             }
             else
             {
-                posLista = listaAutos.Length;
+                posLista = listaAutos.Length -1;
             }
             ColocarVehiculo();
+            change = false;
+        }
+
+        if(confirmAction.ReadValue<float>() != 0)
+        {
+            //TODO seleccionar coche
         }
 
     }
     private void ColocarVehiculo()
     {
+        
         vehiculo = Instantiate(listaAutos[posLista]);
         vehiculo.transform.SetParent(gameObject.transform);
+        Destroy(vehiculo.GetComponentInChildren<Camera>());
+        Destroy(vehiculo.GetComponent<BloqueBien>());
+        Destroy(vehiculo.GetComponent<AudioSource>());
         vehiculo.transform.position = Spawn.position;
         vehiculo.transform.rotation = Spawn.transform.rotation * Quaternion.Euler(new Vector3(0, -180, 0));
     }

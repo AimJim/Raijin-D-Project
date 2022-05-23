@@ -3,7 +3,32 @@ guid: 85d49bf3b711b7b45b31261c88192c91
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carroceria
+    second: {fileID: 2100000, guid: f935a4d1160629d4694ffd1b63676e6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Luces_Alante
+    second: {fileID: 2100000, guid: 91704a6d74e71034cb2da9133dc45224, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Luces_Atras
+    second: {fileID: 2100000, guid: 0125f525c3a6374458ea41e2715c2bac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tubo_Escape
+    second: {fileID: 2100000, guid: cae1742a552e706458008db1edc0c0c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ventana
+    second: {fileID: 2100000, guid: 492695feb788d7642aad6d4017fa45b9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

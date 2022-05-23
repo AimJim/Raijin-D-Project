@@ -55,7 +55,7 @@ public class BloqueBien : MonoBehaviour
     InputAction handbrakeAction;
     AudioSource sonido;
     
-    [SerializeField]
+  
     Rigidbody carRB;
    
     public bool getNitroActivated()
