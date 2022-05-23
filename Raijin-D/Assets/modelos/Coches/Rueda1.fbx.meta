@@ -3,7 +3,12 @@ guid: 691e9ad63df5d1a4f8c9c913912c1934
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LLanta
+    second: {fileID: 2100000, guid: 7c82d3b417b92f945b5da3b709ba8ce4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
