@@ -172,6 +172,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3842970799565860388, guid: 48e7005dec216334788a250024a6ab24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842970799565860388, guid: 48e7005dec216334788a250024a6ab24, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.28
+      objectReference: {fileID: 0}
     - target: {fileID: 3842970799565860390, guid: 48e7005dec216334788a250024a6ab24, type: 3}
       propertyPath: far clip plane
       value: 10000
@@ -227,6 +235,10 @@ PrefabInstance:
     - target: {fileID: 4942218753135698563, guid: 48e7005dec216334788a250024a6ab24, type: 3}
       propertyPath: m_Name
       value: Coche
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942218753135698575, guid: 48e7005dec216334788a250024a6ab24, type: 3}
+      propertyPath: changeRatio
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48e7005dec216334788a250024a6ab24, type: 3}
@@ -412,7 +424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9fd23f5d2e1051e479a9abedbf5f7904, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3406
+      value: 3404
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9fd23f5d2e1051e479a9abedbf5f7904, type: 3}
       propertyPath: m_LocalPosition.z
