@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class BloqueBien : MonoBehaviour
 {
+
     [SerializeField]
     float maxSpeed;
     [SerializeField]
@@ -46,6 +48,7 @@ public class BloqueBien : MonoBehaviour
     bool changeSize;
     bool canAccelerate;
     int groundColision = 0;
+    float TamanioOriginal;
 
     InputAction steerAction;
     InputAction accelAction;
@@ -94,14 +97,19 @@ public class BloqueBien : MonoBehaviour
         nitroAction = inputActionAsset.FindAction("Nitro");
         changeSizeAction = inputActionAsset.FindAction("ChangeSize");
         handbrakeAction = inputActionAsset.FindAction("HandBrake");
-        
+        TamanioOriginal=transform.localScale.x;
+        targetScale = TamanioOriginal;
+
+
 
     }
 
     private void Update()
     {
         sonido.pitch = carRB.velocity.magnitude / diferenciaSonido;
-       
+
+        float scale = Mathf.Lerp(transform.localScale.x, targetScale, Time.deltaTime * 5);
+        transform.localScale = Vector3.one * scale;
       
         accelInput = Mathf.Clamp(accelAction.ReadValue<float>(),0,1);
         brakeInput = -Mathf.Clamp(brakeAction.ReadValue<float>(), -1, 0);
@@ -179,6 +187,8 @@ public class BloqueBien : MonoBehaviour
     bool ft;
     float maxSpeedOG;
     float accelerationOG;
+    float targetScale;
+
     void Nitro()
     {
         if (!ft && nitroInput)
@@ -199,20 +209,27 @@ public class BloqueBien : MonoBehaviour
         if (!changeSize)
         {
             diferenciaSonido *= changeRatio;
-            transform.localScale = transform.localScale * changeRatio;
+            //StartCoroutine(Intercambiador());
+
+            targetScale = TamanioOriginal * changeRatio;
+
             maxSpeed = maxSpeed * changeRatio;
             maxSpeedBackwards = maxSpeedBackwards * changeRatio;
-            changeSize = !changeSize;
         } else
         {
             diferenciaSonido /= changeRatio;
-            transform.localScale = transform.localScale / changeRatio;
+            //StartCoroutine(Intercambiador());
+
+            targetScale = 1;
+
             transform.position = transform.position + new Vector3(0, 0.5f, 0);
             maxSpeed = maxSpeed / changeRatio;
             maxSpeedBackwards = maxSpeedBackwards / changeRatio;
-            changeSize = !changeSize;
+            
         }
+        changeSize = !changeSize;
     }
+
     void Brake()
     {
         carRB.velocity -= transform.forward * brake * brakeInput ;
