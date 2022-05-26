@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Rotaciòn : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class Rotaciòn : MonoBehaviour
         vehiculo = Instantiate(listaAutos[posLista]);
         vehiculo.transform.SetParent(gameObject.transform);
         Destroy(vehiculo.GetComponentInChildren<Camera>());
+        Destroy(vehiculo.GetComponentInChildren<NitroBehaviur>());
+        Destroy(vehiculo.GetComponentInChildren<FireAnimator>());
+        Destroy(vehiculo.GetComponentInChildren<Image>());
         Destroy(vehiculo.GetComponent<BloqueBien>());
         Destroy(vehiculo.GetComponent<AudioSource>());
         posLista = (posLista + 1) % listaAutos.Length;
@@ -84,6 +88,9 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponentInChildren<Camera>());
         Destroy(vehiculo.GetComponent<BloqueBien>());
         Destroy(vehiculo.GetComponent<AudioSource>());
+        Destroy(vehiculo.GetComponentInChildren<NitroBehaviur>());
+        Destroy(vehiculo.GetComponentInChildren<FireAnimator>());
+        Destroy(vehiculo.GetComponentInChildren<Image>());
         vehiculo.transform.position = Spawn.position;
         vehiculo.transform.rotation = Spawn.transform.rotation * Quaternion.Euler(new Vector3(0, -180, 0));
     }

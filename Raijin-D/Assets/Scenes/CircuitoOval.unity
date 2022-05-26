@@ -5040,14 +5040,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1868343783816972641, guid: 48e7005dec216334788a250024a6ab24, type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1868343783816972641, guid: 48e7005dec216334788a250024a6ab24, type: 3}
-      propertyPath: Pan2D
-      value: 0.04
-      objectReference: {fileID: 0}
     - target: {fileID: 4942218753135698560, guid: 48e7005dec216334788a250024a6ab24, type: 3}
       propertyPath: m_RootOrder
       value: 2

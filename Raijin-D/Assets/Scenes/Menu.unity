@@ -1677,6 +1677,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ec543ba7d4353ad40a16b71c6219c947, type: 3}
   - {fileID: 8300000, guid: 1c28f4da8b7d4644c8111fc79be994e8, type: 3}
   - {fileID: 8300000, guid: 45ac58cc0b2fc0840821dbc8dad9e668, type: 3}
+  - {fileID: 8300000, guid: 0fc2df8309fdb084c8c4f2b723489b27, type: 3}
+  - {fileID: 8300000, guid: 9aa3159d48867024498acc69bf0cfe2b, type: 3}
   canvas: {fileID: 1479064184}
   text: {fileID: 1755628086}
 --- !u!82 &2129791456
