@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,11 @@ public class Rotaciòn : MonoBehaviour
     private GameObject vehiculo;
     [SerializeField]
     private InputActionAsset inputActionAsset;
+
+    [SerializeField]
+    Button nextButton;
+    [SerializeField]
+    Button previousButton;
 
     InputAction selectAction;
     InputAction confirmAction;
@@ -42,7 +48,37 @@ public class Rotaciòn : MonoBehaviour
         selectAction = inputActionAsset.FindAction("Steer");
         confirmAction = inputActionAsset.FindAction("Nitro");
 
+        nextButton.onClick.AddListener(OnNextClicked);
+        previousButton.onClick.AddListener(OnPrevClicked);
+
     }
+
+    private void OnPrevClicked()
+    {
+        Destroy(vehiculo);
+        if (posLista > 0)
+        {
+            posLista--;
+        }
+        else
+        {
+            posLista = listaAutos.Length - 1;
+        }
+        ColocarVehiculo();
+        
+    }
+
+    private void OnNextClicked()
+    {
+        
+        Destroy(vehiculo);
+        posLista = (posLista + 1) % listaAutos.Length;
+        ColocarVehiculo();
+        
+
+
+    }
+
     bool change = true;
     private void Update()
     {
@@ -52,14 +88,14 @@ public class Rotaciòn : MonoBehaviour
             change = true;
         }
         
-        if (Mathf.Clamp(selectAction.ReadValue<Vector2>().x, -1, 1) > 0.5 && change) //cambiar en el funturo;
+        if (Mathf.Clamp(selectAction.ReadValue<Vector2>().x, -1, 1) > 0.5 && change) 
         {
             Destroy(vehiculo);
             posLista = (posLista + 1) % listaAutos.Length;
             ColocarVehiculo();
             change = false;
         }
-        else if (Mathf.Clamp(selectAction.ReadValue<Vector2>().x, -1, 1) < -0.5 && change) //cambiar en el funturo;
+        else if (Mathf.Clamp(selectAction.ReadValue<Vector2>().x, -1, 1) < -0.5 && change) 
         {
             Destroy(vehiculo);
             if (posLista > 0)
@@ -76,7 +112,7 @@ public class Rotaciòn : MonoBehaviour
 
         if(confirmAction.ReadValue<float>() != 0)
         {
-            //TODO seleccionar coche
+            //TODO seleccionar coche, posiblemente otro scripts
         }
 
     }
