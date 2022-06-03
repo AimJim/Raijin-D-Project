@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Rotaciòn : MonoBehaviour
@@ -25,6 +26,8 @@ public class Rotaciòn : MonoBehaviour
     Button nextButton;
     [SerializeField]
     Button previousButton;
+    [SerializeField]
+    Button confirmButton;
 
     InputAction selectAction;
     InputAction confirmAction;
@@ -42,6 +45,7 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponentInChildren<Image>());
         Destroy(vehiculo.GetComponent<BloqueBien>());
         Destroy(vehiculo.GetComponent<AudioSource>());
+        CarAndCircuit.instance.setCar(listaAutos[posLista]);
         posLista = (posLista + 1) % listaAutos.Length;
         vehiculo.transform.position = Spawn.position;
 
@@ -50,7 +54,15 @@ public class Rotaciòn : MonoBehaviour
 
         nextButton.onClick.AddListener(OnNextClicked);
         previousButton.onClick.AddListener(OnPrevClicked);
+        confirmButton.onClick.AddListener(OnConfirmClicked);
 
+    }
+
+    private void OnConfirmClicked()
+    {
+        //Hacerlo selector de circuito
+        CarAndCircuit.instance.setCircuit("CircuitoOval");
+        SceneManager.LoadScene("LoadScene", LoadSceneMode.Single);
     }
 
     private void OnPrevClicked()
@@ -66,6 +78,7 @@ public class Rotaciòn : MonoBehaviour
         }
         ColocarVehiculo();
         
+
     }
 
     private void OnNextClicked()
@@ -93,6 +106,7 @@ public class Rotaciòn : MonoBehaviour
             Destroy(vehiculo);
             posLista = (posLista + 1) % listaAutos.Length;
             ColocarVehiculo();
+            
             change = false;
         }
         else if (Mathf.Clamp(selectAction.ReadValue<Vector2>().x, -1, 1) < -0.5 && change) 
@@ -107,12 +121,15 @@ public class Rotaciòn : MonoBehaviour
                 posLista = listaAutos.Length -1;
             }
             ColocarVehiculo();
+            
             change = false;
         }
 
         if(confirmAction.ReadValue<float>() != 0)
         {
-            //TODO seleccionar coche, posiblemente otro scripts
+            //Hacerlo selector de circuito
+            CarAndCircuit.instance.setCircuit("CircuitoOval");
+            SceneManager.LoadScene("LoadScene", LoadSceneMode.Single);
         }
 
     }
@@ -129,5 +146,6 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponentInChildren<Image>());
         vehiculo.transform.position = Spawn.position;
         vehiculo.transform.rotation = Spawn.transform.rotation * Quaternion.Euler(new Vector3(0, -180, 0));
+        CarAndCircuit.instance.setCar(listaAutos[posLista]);
     }
 }

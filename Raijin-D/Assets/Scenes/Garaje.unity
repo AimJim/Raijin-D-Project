@@ -707,6 +707,7 @@ MonoBehaviour:
   inputActionAsset: {fileID: -944628639613478452, guid: a71309cf3ba426643b4c27d0baa1cd87, type: 3}
   nextButton: {fileID: 441992475}
   previousButton: {fileID: 1833516339}
+  confirmButton: {fileID: 1045453379}
 --- !u!1 &626566189
 GameObject:
   m_ObjectHideFlags: 0

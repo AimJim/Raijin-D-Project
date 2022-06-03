@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/CircuitoOval.unity
-    guid: 37ae76311ac049941a7cae90e046ed15
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 036a84bf5a96af24bbc52576c6e4a0da
   - enabled: 1
     path: Assets/Scenes/Options.unity
     guid: 617a8c42c077d5945b71236c6ffb5241
   - enabled: 1
+    path: Assets/Scenes/CircuitoOval.unity
+    guid: 37ae76311ac049941a7cae90e046ed15
+  - enabled: 1
     path: Assets/Scenes/Garaje.unity
     guid: ccfe7deecbce1e24796e9df74ce502c4
+  - enabled: 1
+    path: Assets/Scenes/LoadScene.unity
+    guid: dcdec032c8fdca144a38b844e57d3340
   m_configObjects: {}
