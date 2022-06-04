@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Options.unity
     guid: 617a8c42c077d5945b71236c6ffb5241
   - enabled: 1
-    path: Assets/Scenes/CircuitoOval.unity
+    path: Assets/Scenes/Circuitos/CircuitoOval.unity
     guid: 37ae76311ac049941a7cae90e046ed15
   - enabled: 1
     path: Assets/Scenes/Garaje.unity
@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadScene.unity
     guid: dcdec032c8fdca144a38b844e57d3340
+  - enabled: 1
+    path: Assets/Scenes/Circuitos/CircuitoCasino.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

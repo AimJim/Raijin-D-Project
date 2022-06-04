@@ -23,6 +23,10 @@ public class Rotaciòn : MonoBehaviour
     private InputActionAsset inputActionAsset;
 
     [SerializeField]
+    GameObject carCanvas;
+    [SerializeField]
+    GameObject circuitCanvas;
+    [SerializeField]
     Button nextButton;
     [SerializeField]
     Button previousButton;
@@ -61,8 +65,9 @@ public class Rotaciòn : MonoBehaviour
     private void OnConfirmClicked()
     {
         //Hacerlo selector de circuito
-        CarAndCircuit.instance.setCircuit("CircuitoOval");
-        SceneManager.LoadScene("LoadScene", LoadSceneMode.Single);
+        carCanvas.SetActive(false);
+        circuitCanvas.SetActive(true);
+        Destroy(gameObject.GetComponent<Rotaciòn>());
     }
 
     private void OnPrevClicked()
@@ -127,9 +132,9 @@ public class Rotaciòn : MonoBehaviour
 
         if(confirmAction.ReadValue<float>() != 0)
         {
-            //Hacerlo selector de circuito
-            CarAndCircuit.instance.setCircuit("CircuitoOval");
-            SceneManager.LoadScene("LoadScene", LoadSceneMode.Single);
+            carCanvas.SetActive(false);
+            circuitCanvas.SetActive(true);
+            Destroy(gameObject.GetComponent<Rotaciòn>());
         }
 
     }

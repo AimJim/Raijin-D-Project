@@ -57,7 +57,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 10000
+  far clip plane: 100000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objective: {fileID: 280069616781688161}
   zDistance: 8
-  yDistance: 2
+  yDistance: 4
   xDelta: 2
   nitroDistanceRatio: 1.1
   rotSpeed: 10
