@@ -204,7 +204,7 @@ public class BloqueBien : MonoBehaviour
         }
     }
 
-    void ChangeSize()
+    public void ChangeSize()
     {
         if (!changeSize)
         {
