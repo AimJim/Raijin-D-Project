@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 6200311576771868147}
   - component: {fileID: 154107118742796111}
   - component: {fileID: 8259303572504348544}
+  - component: {fileID: 2828134778155950228}
   m_Layer: 0
   m_Name: Torgit_Phaedra_SR
   m_TagString: Untagged
@@ -293,6 +294,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2828134778155950228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280069616781688161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e995050449ca5e34ebb924892fbcbbf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPoints: []
+  acceleration: 10
+  maxSpeed: 200
+  steer: 30
+  maxAngle: 45
+  downforce: 1000
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  triggerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1082342153157225924
 GameObject:
   m_ObjectHideFlags: 0

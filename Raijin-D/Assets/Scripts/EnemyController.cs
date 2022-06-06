@@ -7,8 +7,8 @@ public class EnemyController : MonoBehaviour
 {
    
     //IA propia
-    [SerializeField]
-    GameObject[] checkPoints;
+    
+    public List<GameObject> checkPoints;
     [SerializeField]
     float acceleration;
     [SerializeField]
@@ -27,6 +27,12 @@ public class EnemyController : MonoBehaviour
 
     int currentCheckPoint = 0;
     Transform currentDirection;
+
+    [SerializeField]
+    private LayerMask layerMask;
+    [SerializeField]
+    private LayerMask triggerMask;
+    int groundColision = 0;
     private void Awake()
     {
         sonidoEnemigo = GetComponent<AudioSource>();
@@ -36,7 +42,7 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         sonidoEnemigo.pitch = carRB.velocity.magnitude / 150;
-        if (canAccelerate)
+        if (canAccelerate && groundColision > 0)
         {
             Accelerate();
         }
@@ -47,10 +53,18 @@ public class EnemyController : MonoBehaviour
 
     private void Rotate()
     {
-        
+        //Va mal
+        Debug.Log(Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg + " ANGULO");
+        if(Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg < 170 && Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg > 0)
+        {
+            carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * steer * Time.deltaTime));
+        } else if(Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg > -170 && Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg < 0)
+        {
+            carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * -steer * Time.deltaTime));
+        }
        
-        transform.LookAt(currentDirection);
-        Debug.Log(currentDirection.gameObject.name);
+        
+        
     }
     void DownForce()
     {
@@ -74,8 +88,28 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        currentCheckPoint++;
-        currentCheckPoint = currentCheckPoint % checkPoints.Length;
-        currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, checkPoints[currentCheckPoint].transform.childCount));
+        if (triggerMask == (triggerMask | 1 << other.gameObject.layer/*esto mueve un 1 el nùmero de veces que es su layer*/))
+        {
+            currentCheckPoint = (currentCheckPoint + 1) % checkPoints.Count;
+            currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, checkPoints[currentCheckPoint].transform.childCount));
+
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (layerMask == (layerMask | 1 << collision.gameObject.layer/*esto mueve un 1 el nùmero de veces que es su layer*/))
+        {
+            //Debug.Log("piso");
+            groundColision++;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (layerMask == (layerMask | 1 << collision.gameObject.layer/*esto mueve un 1 el nùmero de veces que es su layer*/))
+        {
+            //Debug.Log("piso");
+            groundColision--;
+        }
     }
 }

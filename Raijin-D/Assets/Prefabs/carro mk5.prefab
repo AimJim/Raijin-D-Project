@@ -620,6 +620,7 @@ GameObject:
   - component: {fileID: 5167316038787354159}
   - component: {fileID: 1847552787009552890}
   - component: {fileID: 3375496619027766481}
+  - component: {fileID: 330472066449445668}
   m_Layer: 0
   m_Name: carro mk5
   m_TagString: Untagged
@@ -798,6 +799,30 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   inputActionAsset: {fileID: -944628639613478452, guid: a71309cf3ba426643b4c27d0baa1cd87, type: 3}
+--- !u!114 &330472066449445668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299826273722238838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e995050449ca5e34ebb924892fbcbbf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPoints: []
+  acceleration: 10
+  maxSpeed: 200
+  steer: 30
+  maxAngle: 45
+  downforce: 1000
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  triggerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &5523656745249312529
 GameObject:
   m_ObjectHideFlags: 0

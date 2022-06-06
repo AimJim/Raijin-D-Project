@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: -3891160345063261547}
   - component: {fileID: 6198615805774487939}
   - component: {fileID: 9123206977277157319}
+  - component: {fileID: 5404128148138215937}
   m_Layer: 0
   m_Name: Tren
   m_TagString: Untagged
@@ -397,6 +398,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5404128148138215937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5840528913937262538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e995050449ca5e34ebb924892fbcbbf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPoints: []
+  acceleration: 10
+  maxSpeed: 200
+  steer: 30
+  maxAngle: 45
+  downforce: 1000
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  triggerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &5857358422666342480
 GameObject:
   m_ObjectHideFlags: 0

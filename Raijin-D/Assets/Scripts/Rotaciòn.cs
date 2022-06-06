@@ -149,6 +149,7 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponentInChildren<NitroBehaviur>());
         Destroy(vehiculo.GetComponentInChildren<FireAnimator>());
         Destroy(vehiculo.GetComponentInChildren<Image>());
+        Destroy(vehiculo.GetComponent<EnemyController>());
         vehiculo.transform.position = Spawn.position;
         vehiculo.transform.rotation = Spawn.transform.rotation * Quaternion.Euler(new Vector3(0, -180, 0));
         CarAndCircuit.instance.setCar(listaAutos[posLista]);

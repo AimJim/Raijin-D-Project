@@ -293,7 +293,7 @@ public class BloqueBien : MonoBehaviour
             steerOG = steerInput;
         }
 
-        Debug.Log("Iniciando drift");
+        
 
         carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * handBrakeAngle * steerInput * Time.deltaTime));
 
