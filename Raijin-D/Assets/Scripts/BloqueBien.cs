@@ -213,8 +213,8 @@ public class BloqueBien : MonoBehaviour
 
             targetScale = TamanioOriginal * changeRatio;
 
-            maxSpeed = maxSpeed * changeRatio;
-            maxSpeedBackwards = maxSpeedBackwards * changeRatio;
+            //maxSpeed = maxSpeed * changeRatio;
+            //maxSpeedBackwards = maxSpeedBackwards * changeRatio;
         } else
         {
             diferenciaSonido /= changeRatio;
@@ -223,8 +223,8 @@ public class BloqueBien : MonoBehaviour
             targetScale = 1;
 
             transform.position = transform.position + new Vector3(0, 0.5f, 0);
-            maxSpeed = maxSpeed / changeRatio;
-            maxSpeedBackwards = maxSpeedBackwards / changeRatio;
+            //maxSpeed = maxSpeed / changeRatio;
+            //maxSpeedBackwards = maxSpeedBackwards / changeRatio;
             
         }
         changeSize = !changeSize;
