@@ -232,29 +232,17 @@ public class BloqueBien : MonoBehaviour
 
     void Brake()
     {
-        carRB.velocity -= transform.forward * brake * brakeInput ;
+        carRB.velocity -= transform.forward * brake * brakeInput * Time.fixedDeltaTime;
     }
 
-    void Friction()
-    {
-        if (accelInput == 0 && currentSpeed > 0 || !canAccelerate)
-        {
-            carRB.velocity -= transform.forward * acceleration;
-            
-        } else if( brakeInput == 0 && currentSpeed < 0)
-        {
-            carRB.velocity += transform.forward * acceleration ;
-        }
-    }
-
-    
+     
 
     void Accelerate()
     {
 
 
-        carRB.velocity += transform.forward * acceleration * accelInput;
-        Debug.Log("Acelera");
+        carRB.velocity += transform.forward * acceleration * accelInput * Time.fixedDeltaTime;
+        
         
   
     }
@@ -277,7 +265,7 @@ public class BloqueBien : MonoBehaviour
     {
         if(carRB.velocity.magnitude > 0.1 || carRB.velocity.magnitude < -0.1)
         {
-            carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * steerInput * steer * Time.deltaTime));
+            carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * steerInput * steer * Time.fixedDeltaTime));
         }
        
     }
@@ -285,7 +273,7 @@ public class BloqueBien : MonoBehaviour
     private float steerOG = 0;
     void HandBrake()
     {
-        //Va raro
+        
         drifting = steerInput != 0 && accelInput > 0;
 
         if (handbrakeInput && !drifting)
@@ -295,7 +283,7 @@ public class BloqueBien : MonoBehaviour
 
         
 
-        carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * handBrakeAngle * steerInput * Time.deltaTime));
+        carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * handBrakeAngle * steerInput * Time.fixedDeltaTime));
 
         carRB.velocity += (new Vector3(-steerInput, 0, 0) * currentSpeed * 0.3f );
         

@@ -786,8 +786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4743d88459c34684cb406f37d1f715f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 200
-  acceleration: 10
+  maxSpeed: 300
+  acceleration: 300
   steer: 45
   handBrakeAngle: 90
   brake: 20
@@ -812,10 +812,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkPoints: []
-  acceleration: 10
-  maxSpeed: 200
-  steer: 30
-  maxAngle: 45
+  acceleration: 300
+  maxSpeed: 300
+  steer: 90
+  maxAngle: 90
   downforce: 1000
   layerMask:
     serializedVersion: 2

@@ -53,18 +53,29 @@ public class EnemyController : MonoBehaviour
 
     private void Rotate()
     {
-        //Va mal
-        Debug.Log(Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg + " ANGULO");
-        if(Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg < 170 && Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg > 0)
+        //Z = Y para los calculos
+        //Gira directamente al angulo, no a la direccion
+        /*
+        Vector2 carV = new Vector2(gameObject.transform.TransformDirection(transform.forward).x, gameObject.transform.TransformDirection(transform.forward).z);
+        Vector2 checKV = new Vector2(currentDirection.transform.TransformDirection(transform.right).x, currentDirection.transform.TransformDirection(transform.right).z);
+        float angle = Mathf.Acos((carV.x * checKV.x + carV.y * checKV.y)/(Mathf.Sqrt(carV.x * carV.x + carV.y *carV.y)*Mathf.Sqrt(checKV.x * checKV.x + checKV.y * checKV.y))) * Mathf.Rad2Deg;
+        Debug.Log(angle);
+        if(angle > 1 && angle < 179)
         {
-            carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * steer * Time.deltaTime));
-        } else if(Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg > -170 && Mathf.Atan2(transform.position.z - currentDirection.transform.position.z, transform.position.x - currentDirection.transform.position.x) * Mathf.Rad2Deg < 0)
+            carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * -steer * Time.fixedDeltaTime));
+        } else if(angle < 359 && angle > 181)
         {
-            carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * -steer * Time.deltaTime));
-        }
-       
-        
-        
+            carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * steer * Time.fixedDeltaTime));
+        }*/
+        Vector3 target = currentDirection.transform.position - transform.position;
+        float step = steer * Time.fixedDeltaTime * Mathf.Deg2Rad;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, target, step, 0f);
+
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
+
+
+
     }
     void DownForce()
     {
@@ -72,7 +83,7 @@ public class EnemyController : MonoBehaviour
     }
     private void Accelerate()
     {
-        carRB.velocity += transform.forward * acceleration;
+        carRB.velocity += transform.forward * acceleration *  Time.fixedDeltaTime;
     }
     private void LimitSpeed()
     {
