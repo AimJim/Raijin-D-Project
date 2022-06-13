@@ -80,6 +80,7 @@ public class BloqueBien : MonoBehaviour
         return drifting;
     }
 
+    
     private void Awake()
     {
         inputActionAsset.Enable();
@@ -112,7 +113,7 @@ public class BloqueBien : MonoBehaviour
         transform.localScale = Vector3.one * scale;
       
         accelInput = Mathf.Clamp(accelAction.ReadValue<float>(),0,1);
-        brakeInput = -Mathf.Clamp(brakeAction.ReadValue<float>(), -1, 0);
+        brakeInput = -Mathf.Clamp(brakeAction.ReadValue<float>(), 1, 0);
         steerInput = Mathf.Clamp(steerAction.ReadValue<Vector2>().x, -1, 1);
         handbrakeInput = handbrakeAction.ReadValue<float>() != 0;
         changeSizeInput = changeSizeAction.triggered;
@@ -232,7 +233,15 @@ public class BloqueBien : MonoBehaviour
 
     void Brake()
     {
-        carRB.velocity -= transform.forward * brake * brakeInput * Time.fixedDeltaTime;
+        
+        if(carRB.velocity.magnitude < 0.1f)
+        {
+            
+            carRB.velocity += -transform.forward * acceleration * (brakeInput+1) * Time.fixedDeltaTime;
+        } else
+        {
+            carRB.velocity += -transform.forward * brake * (brakeInput+1) * Time.fixedDeltaTime;
+        }
     }
 
      
@@ -281,11 +290,14 @@ public class BloqueBien : MonoBehaviour
             steerOG = steerInput;
         }
 
+
+        if (carRB.velocity.magnitude > 0.1 || carRB.velocity.magnitude < -0.1)
+        {
+            carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * handBrakeAngle * steerInput * Time.fixedDeltaTime));
+
+            carRB.velocity += (new Vector3(-steerInput, 0, 0) * currentSpeed * 0.3f);
+        }
         
-
-        carRB.MoveRotation(transform.rotation * Quaternion.Euler(transform.up * handBrakeAngle * steerInput * Time.fixedDeltaTime));
-
-        carRB.velocity += (new Vector3(-steerInput, 0, 0) * currentSpeed * 0.3f );
         
            
       

@@ -8,5 +8,7 @@ public class SpawnCarOnGame : MonoBehaviour
     {
         var car = Instantiate(CarAndCircuit.instance.getCar(), gameObject.transform);
         Destroy(car.GetComponent<EnemyController>());
+        car.GetComponent<BloqueBien>().enabled = false;
+        car.GetComponentInChildren<Canvas>().enabled = false;
     }
 }

@@ -11,6 +11,6 @@ public class SelectLoadingImage : MonoBehaviour
     private void Awake()
     {
         var image = gameObject.GetComponent<Image>();
-        image.sprite = posibleSprites[Random.Range(0, posibleSprites.Length - 1)];
+        image.sprite = posibleSprites[Random.Range(0, posibleSprites.Length)];
     }
 }

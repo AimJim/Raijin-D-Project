@@ -40,7 +40,7 @@ public class Rotaciòn : MonoBehaviour
     private void Awake()
     {
         plataforma = gameObject;
-       
+        
         vehiculo = Instantiate(listaAutos[posLista]);
         vehiculo.transform.SetParent(gameObject.transform);
         Destroy(vehiculo.GetComponentInChildren<Camera>());
@@ -150,6 +150,8 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponentInChildren<FireAnimator>());
         Destroy(vehiculo.GetComponentInChildren<Image>());
         Destroy(vehiculo.GetComponent<EnemyController>());
+        Destroy(vehiculo.GetComponentInChildren<FxManager>());
+        Destroy(vehiculo.GetComponent<MoverRuedas>());
         vehiculo.transform.position = Spawn.position;
         vehiculo.transform.rotation = Spawn.transform.rotation * Quaternion.Euler(new Vector3(0, -180, 0));
         CarAndCircuit.instance.setCar(listaAutos[posLista]);
