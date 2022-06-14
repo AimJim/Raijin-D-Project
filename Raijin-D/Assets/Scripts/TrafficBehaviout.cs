@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class TrafficBehaviout : MonoBehaviour
 {
-   
-    //IA propia
     
     public List<GameObject> checkPoints;
     [SerializeField]
@@ -15,15 +12,14 @@ public class EnemyController : MonoBehaviour
     float maxSpeed;
     [SerializeField]
     float steer;
-    [SerializeField]
-    float maxAngle;
+  
     [SerializeField]
     float downforce;
-  
+
     Rigidbody carRB;
 
     bool canAccelerate = true;
-    AudioSource sonidoEnemigo;
+    
 
     int currentCheckPoint = 0;
     Transform currentDirection;
@@ -33,15 +29,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private LayerMask triggerMask;
     int groundColision = 0;
+
+    int route = 0;
     private void Awake()
     {
-        sonidoEnemigo = GetComponent<AudioSource>();
+        
         carRB = GetComponent<Rigidbody>();
         currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, 2));
+        route = Random.Range(0, checkPoints[currentCheckPoint].transform.childCount);
     }
     private void FixedUpdate()
     {
-        sonidoEnemigo.pitch = carRB.velocity.magnitude / 150;
+        
         if (canAccelerate && groundColision > 0)
         {
             Accelerate();
@@ -51,9 +50,14 @@ public class EnemyController : MonoBehaviour
         DownForce();
     }
 
+    public void setCurrentCheckpoint(int check)
+    {
+        currentCheckPoint = (check + 1) % checkPoints.Count;
+        currentDirection = checkPoints[currentCheckPoint].transform.GetChild(route);
+    }
     private void Rotate()
     {
-        
+
         Vector3 target = currentDirection.transform.position - transform.position;
         float step = steer * Time.fixedDeltaTime * Mathf.Deg2Rad;
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, target, step, 0f);
@@ -70,7 +74,7 @@ public class EnemyController : MonoBehaviour
     }
     private void Accelerate()
     {
-        carRB.velocity += transform.forward * acceleration *  Time.fixedDeltaTime;
+        carRB.velocity += transform.forward * acceleration * Time.fixedDeltaTime;
     }
     private void LimitSpeed()
     {
@@ -89,7 +93,7 @@ public class EnemyController : MonoBehaviour
         if (triggerMask == (triggerMask | 1 << other.gameObject.layer/*esto mueve un 1 el nùmero de veces que es su layer*/))
         {
             currentCheckPoint = (currentCheckPoint + 1) % checkPoints.Count;
-            currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, checkPoints[currentCheckPoint].transform.childCount));
+            currentDirection = checkPoints[currentCheckPoint].transform.GetChild(route);
 
         }
     }

@@ -6,6 +6,6 @@ public class PortTamanyo : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        gameObject.GetComponent<BloqueBien>().ChangeSize();
+        other.gameObject.GetComponent<BloqueBien>().ChangeSize();
     }
 }
