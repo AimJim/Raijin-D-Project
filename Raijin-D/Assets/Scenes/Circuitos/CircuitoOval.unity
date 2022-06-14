@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a30e9f6eaa0fae4caff4c6488ffb234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cantCoches: 1
+  cantCoches: 20
   cochesPosibles:
   - {fileID: 148019454512896426, guid: a7d4fa77a67918644a8026b34b515c02, type: 3}
   - {fileID: 5299826273722238838, guid: c3ff42078e19809469bca2ee1c02085c, type: 3}
