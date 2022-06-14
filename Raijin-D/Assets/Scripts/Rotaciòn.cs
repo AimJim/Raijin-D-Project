@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -49,6 +50,10 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponentInChildren<Image>());
         Destroy(vehiculo.GetComponent<BloqueBien>());
         Destroy(vehiculo.GetComponent<AudioSource>());
+        Destroy(vehiculo.GetComponent<MoverRuedas>());
+        Destroy(vehiculo.GetComponent<ExplosionAndRespawn>());
+        Destroy(vehiculo.GetComponentInChildren<SpeedView>());
+        Destroy(vehiculo.GetComponentInChildren<TMP_Text>());
         CarAndCircuit.instance.setCar(listaAutos[posLista]);
         posLista = (posLista + 1) % listaAutos.Length;
         vehiculo.transform.position = Spawn.position;
@@ -152,6 +157,9 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponent<EnemyController>());
         Destroy(vehiculo.GetComponentInChildren<FxManager>());
         Destroy(vehiculo.GetComponent<MoverRuedas>());
+        Destroy(vehiculo.GetComponent<ExplosionAndRespawn>());
+        Destroy(vehiculo.GetComponentInChildren<SpeedView>());
+        Destroy(vehiculo.GetComponentInChildren<TMP_Text>());
         vehiculo.transform.position = Spawn.position;
         vehiculo.transform.rotation = Spawn.transform.rotation * Quaternion.Euler(new Vector3(0, -180, 0));
         CarAndCircuit.instance.setCar(listaAutos[posLista]);

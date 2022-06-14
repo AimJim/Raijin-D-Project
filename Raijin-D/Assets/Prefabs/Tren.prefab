@@ -500,8 +500,8 @@ MonoBehaviour:
   checkPoints: []
   acceleration: 300
   maxSpeed: 200
-  steer: 180
-  maxAngle: 180
+  steer: 120
+  maxAngle: 120
   downforce: 1000
   layerMask:
     serializedVersion: 2

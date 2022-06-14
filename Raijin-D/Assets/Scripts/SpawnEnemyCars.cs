@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SpawnEnemyCars : MonoBehaviour
@@ -28,9 +29,11 @@ public class SpawnEnemyCars : MonoBehaviour
             Destroy(car.GetComponentInChildren<AudioListener>());
             Destroy(car.GetComponentInChildren<CameraScript>());
             Destroy(car.GetComponent<BloqueBien>());
-            Destroy(car.GetComponentInChildren<Canvas>());
+            car.GetComponentInChildren<Canvas>().enabled = false;
             Destroy(car.GetComponentInChildren<Camera>());
             Destroy(car.GetComponent<MoverRuedas>());
+            Destroy(car.GetComponentInChildren<SpeedView>());
+            Destroy(car.GetComponentInChildren<TMP_Text>());
         }
         
     }

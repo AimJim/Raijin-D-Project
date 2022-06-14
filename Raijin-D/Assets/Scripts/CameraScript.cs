@@ -31,7 +31,7 @@ public class CameraScript : MonoBehaviour
         if(moveScript.getSteer() == 0)
         {
             xPos -= Mathf.Clamp(xPos, -rotSpeed * Time.deltaTime, rotSpeed * Time.deltaTime); //para coger el signo de xPos y el valor de lo otro
-            Debug.Log(xPos);
+            
         }
 
         if (moveScript.getDrift())

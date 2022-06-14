@@ -32,14 +32,16 @@ public class MoverRuedas : MonoBehaviour
     private void Update()
     {
         //Move local
-        wheelFL.transform.rotation *= Quaternion.Euler(transform.right * carRB.velocity.magnitude * Time.deltaTime);
-        wheelFR.transform.rotation *= Quaternion.Euler(transform.right * carRB.velocity.magnitude * Time.deltaTime);
-        wheelRL.transform.rotation *= Quaternion.Euler(transform.right * carRB.velocity.magnitude * Time.deltaTime);
-        wheelRR.transform.rotation *= Quaternion.Euler(transform.right * carRB.velocity.magnitude * Time.deltaTime);
+        
+        wheelFL.transform.localRotation *= Quaternion.Euler(new Vector3(carRB.velocity.magnitude*10 * Time.deltaTime,0,0));
+        wheelFR.transform.localRotation *= Quaternion.Euler(new Vector3(carRB.velocity.magnitude * 10 * Time.deltaTime, 0, 0));
+        wheelRL.transform.localRotation *= Quaternion.Euler(new Vector3(carRB.velocity.magnitude * 10 * Time.deltaTime, 0, 0));
+        wheelRR.transform.localRotation *= Quaternion.Euler(new Vector3(carRB.velocity.magnitude * 10 * Time.deltaTime, 0, 0));
 
         //Move global
-        globalFL.transform.rotation = Quaternion.Euler(transform.up * GetComponent<BloqueBien>().getSteer() * wheelAngle);
-        globalFR.transform.rotation = Quaternion.Euler(transform.up * GetComponent<BloqueBien>().getSteer() * wheelAngle);
+        
+        globalFL.transform.localRotation = Quaternion.Euler(new Vector3(0, (GetComponent<BloqueBien>().getSteer()) * wheelAngle, 0));
+        globalFR.transform.localRotation = Quaternion.Euler(new Vector3(0, (GetComponent<BloqueBien>().getSteer()) * wheelAngle, 0));
 
     }
 }

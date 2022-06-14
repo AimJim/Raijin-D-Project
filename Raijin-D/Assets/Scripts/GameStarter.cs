@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameStarter : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class GameStarter : MonoBehaviour
 
     private void Update()
     {
-        if (startAction.ReadValue<float>() != 0 && !click)
+        if (startAction.ReadValue<float>() != 0 && !click && !SceneManager.GetSceneByName("LoadScene").isLoaded)
         {
             click = true;
             StartCoroutine(startGame());
@@ -40,7 +41,7 @@ public class GameStarter : MonoBehaviour
         texto.color = new Color(0xFF, 0xFF, 0x00);
         texto.text = "1";
         yield return new WaitForSeconds(1);
-        texto.color = new Color(0x00, 0x00, 0xFF);
+        texto.color = new Color(0x00, 0xFF, 0x00);
         texto.text = "GO!";
         foreach(Transform child in spawner)
         {
@@ -55,6 +56,7 @@ public class GameStarter : MonoBehaviour
             
             
         }
+        yield return new WaitForSeconds(1);
         GetComponent<Canvas>().enabled = false;
     }
 
