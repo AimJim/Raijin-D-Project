@@ -122,7 +122,8 @@ public class EnemyController : MonoBehaviour
     {
         if (triggerMask == (triggerMask | 1 << other.gameObject.layer/*esto mueve un 1 el nùmero de veces que es su layer*/))
         {
-            currentCheckPoint = (currentCheckPoint + 1) % checkPoints.Count;
+            
+            currentCheckPoint = (checkPoints.IndexOf(other.gameObject) + 1) % checkPoints.Count;
             currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, checkPoints[currentCheckPoint].transform.childCount));
 
         }

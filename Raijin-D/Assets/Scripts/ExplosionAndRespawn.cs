@@ -13,6 +13,8 @@ public class ExplosionAndRespawn : MonoBehaviour
     [SerializeField]
     LayerMask checkPointsMask;
     [SerializeField]
+    LayerMask metaMask;
+    [SerializeField]
     float explosionForce;
     [SerializeField]
     float waitTime;
