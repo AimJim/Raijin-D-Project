@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ExplosionAndRespawn : MonoBehaviour
 {
@@ -18,7 +22,17 @@ public class ExplosionAndRespawn : MonoBehaviour
     float explosionForce;
     [SerializeField]
     float waitTime;
+    [SerializeField]
+    Button menuButton;
+    [SerializeField]
+    TMP_Text texto;
 
+    [SerializeField]
+    int vueltas = 3;
+    [SerializeField]
+    int vidas = 5;
+    [SerializeField]
+    GameObject canvas;
     bool explosion = false;
     public bool getExplosion()
     {
@@ -28,6 +42,13 @@ public class ExplosionAndRespawn : MonoBehaviour
     private void Awake()
     {
         lastCheckpoint = GameObject.Find("Spawner").transform;
+        menuButton.onClick.AddListener(MenuButtonLoad);
+    }
+
+    private void MenuButtonLoad()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,6 +56,18 @@ public class ExplosionAndRespawn : MonoBehaviour
         if (checkPointsMask == (checkPointsMask | 1 << other.gameObject.layer/*esto mueve un 1 el nùmero de veces que es su layer*/))
         {
             lastCheckpoint = other.transform;
+
+        }
+        if (metaMask == (metaMask | 1 << other.gameObject.layer/*esto mueve un 1 el nùmero de veces que es su layer*/))
+        {
+            vueltas--;
+            if(vueltas < 0 && GetComponent<BloqueBien>() != null)
+            {
+                Time.timeScale = 0f;
+                texto.text = "Ganaste";
+                texto.color = new Color(0x00, 0xFF, 0x00);
+                canvas.SetActive(true);
+            }
 
         }
     }
@@ -59,6 +92,14 @@ public class ExplosionAndRespawn : MonoBehaviour
         }
         GetComponent<Rigidbody>().AddForce(Vector3.up * explosionForce);
         explosion = true;
+        vidas--;
+        if(vidas < 0 && GetComponent<BloqueBien>() != null)
+        {
+            Time.timeScale = 0f;
+            texto.text = "Perdiste";
+            texto.color = new Color(0xFF, 0x00, 0x00);
+            canvas.SetActive(true);
+        }
 
         yield return new WaitForSeconds(waitTime);
 
