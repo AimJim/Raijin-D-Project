@@ -8,15 +8,19 @@ public class FxManager : MonoBehaviour
     AudioSource nitroAD;
     [SerializeField]
     AudioSource driftAD;
-
+    [SerializeField]
+    AudioSource explosionAD;
     BloqueBien bb;
+    ExplosionAndRespawn ear;
     
 
     private void Awake()
     {
         bb = gameObject.GetComponentInParent<BloqueBien>();
+        ear = gameObject.GetComponentInParent<ExplosionAndRespawn>();
     }
 
+    bool explosion = false;
     private void Update()
     {
         if(bb.getDrift() && !driftAD.isPlaying)
@@ -34,5 +38,16 @@ public class FxManager : MonoBehaviour
         {
             nitroAD.Stop();
         }
+
+        if(ear.getExplosion() && !explosionAD.isPlaying && !explosion)
+        {
+            explosionAD.Play();
+            explosion = true;
+            
+        } else if (!ear.getExplosion() && explosion)
+        {
+            explosion = false;
+        }
+        
     }
 }

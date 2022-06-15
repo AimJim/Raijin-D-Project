@@ -54,6 +54,7 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponent<ExplosionAndRespawn>());
         Destroy(vehiculo.GetComponentInChildren<SpeedView>());
         Destroy(vehiculo.GetComponentInChildren<TMP_Text>());
+        Destroy(vehiculo.GetComponentInChildren<ParticleManagment>());
         CarAndCircuit.instance.setCar(listaAutos[posLista]);
         vehiculo.transform.position = Spawn.position;
 
@@ -158,6 +159,7 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponent<ExplosionAndRespawn>());
         Destroy(vehiculo.GetComponentInChildren<SpeedView>());
         Destroy(vehiculo.GetComponentInChildren<TMP_Text>());
+        Destroy(vehiculo.GetComponentInChildren<ParticleManagment>());
         vehiculo.transform.position = Spawn.position;
         vehiculo.transform.rotation = Spawn.transform.rotation * Quaternion.Euler(new Vector3(0, -180, 0));
         CarAndCircuit.instance.setCar(listaAutos[posLista]);

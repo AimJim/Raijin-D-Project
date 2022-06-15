@@ -46,8 +46,9 @@ public class NitroBehaviur : MonoBehaviour
             }
             if (nitroValue > 0.99f)
             {
-               StartCoroutine(GetComponentInParent<ExplosionAndRespawn>().Colision());
-               nitroValue = 0;
+                nitroValue = 0;
+                StartCoroutine(GetComponentInParent<ExplosionAndRespawn>().Colision());
+               
             }
 
         }
