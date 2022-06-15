@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ParticleManagment : MonoBehaviour
 {
@@ -22,10 +23,12 @@ public class ParticleManagment : MonoBehaviour
             bloqueBien = GetComponentInParent<BloqueBien>();
         }
         ear = GetComponentInParent<ExplosionAndRespawn>();
-        
+        GetComponentInChildren<Image>().enabled = false;
+
     }
 
     bool driftBool = false;
+    bool anim = false;
     void Update()
     {
         if(bloqueBien != null)
@@ -41,6 +44,18 @@ public class ParticleManagment : MonoBehaviour
                 psRight.Stop();
                 driftBool = false;
             }
+        }
+        if (ear.getExplosion() && !anim)
+        {
+
+            GetComponentInChildren<Image>().enabled = true;
+            StartCoroutine(GetComponentInChildren<ExplosionAnim>().Change());
+            anim = true;
+        }
+        else if(!ear.getExplosion() && anim)
+        {
+            anim = false;
+            GetComponentInChildren<Image>().enabled = false;
         }
         
     }

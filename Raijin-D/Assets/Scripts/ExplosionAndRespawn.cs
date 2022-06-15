@@ -17,6 +17,12 @@ public class ExplosionAndRespawn : MonoBehaviour
     [SerializeField]
     float waitTime;
 
+    bool explosion = false;
+    public bool getExplosion()
+    {
+        return explosion;
+    }
+
     private void Awake()
     {
         lastCheckpoint = GameObject.Find("Spawner").transform;
@@ -50,6 +56,7 @@ public class ExplosionAndRespawn : MonoBehaviour
             GetComponent<EnemyController>().enabled = false;
         }
         GetComponent<Rigidbody>().AddForce(Vector3.up * explosionForce);
+        explosion = true;
 
         yield return new WaitForSeconds(waitTime);
 
@@ -65,6 +72,7 @@ public class ExplosionAndRespawn : MonoBehaviour
         {
             GetComponent<EnemyController>().enabled = true;
         }
+        explosion = false;
     }
 
 
