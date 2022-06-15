@@ -19,8 +19,18 @@ public class RadioController : MonoBehaviour
 
     private float musicVolume = 1f;
 
+    static RadioController instance;
+
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>();
         currentSong = Random.Range(0, songList.Length);

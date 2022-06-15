@@ -11,14 +11,20 @@ public class CarAndCircuit : MonoBehaviour
 
     CarAndCircuit()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
+        
+        
     }
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+           Destroy(gameObject);
+        }
         DontDestroyOnLoad(gameObject);
     }
     public void setCar(GameObject car)
