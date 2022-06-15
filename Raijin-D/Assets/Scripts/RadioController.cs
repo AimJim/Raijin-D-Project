@@ -17,6 +17,8 @@ public class RadioController : MonoBehaviour
     int currentSong = 0;
     float waitTime = 2f;
 
+    private float musicVolume = 1f;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -39,6 +41,8 @@ public class RadioController : MonoBehaviour
             
 
         }
+
+        audioSource.volume = musicVolume;
     }
 
     IEnumerator showRadioUI()
@@ -47,6 +51,12 @@ public class RadioController : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         canvas.SetActive(false);
         text.text = songList[currentSong].name;
+    }
+
+
+    public void setVolume(float volume)
+    {
+        musicVolume = volume;
     }
 
     
