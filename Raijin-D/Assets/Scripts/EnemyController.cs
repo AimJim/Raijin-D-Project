@@ -27,6 +27,10 @@ public class EnemyController : MonoBehaviour
 
     int currentCheckPoint = 0;
     Transform currentDirection;
+    bool changeSize;
+    float targetScale;
+    float TamanioOriginal;
+    float changeRatio=10;
 
     [SerializeField]
     private LayerMask layerMask;
@@ -35,6 +39,9 @@ public class EnemyController : MonoBehaviour
     int groundColision = 0;
     private void Awake()
     {
+        changeRatio = changeRatio / 100;
+        TamanioOriginal = transform.localScale.x;
+        targetScale = TamanioOriginal;
         sonidoEnemigo = GetComponent<AudioSource>();
         carRB = GetComponent<Rigidbody>();
         if(checkPoints.Count !=0) currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, 2));
@@ -49,6 +56,33 @@ public class EnemyController : MonoBehaviour
         LimitSpeed();
         Rotate();
         DownForce();
+    }
+
+    public void ChangeSize()
+    {
+        if (!changeSize)
+        {
+            //diferenciaSonido *= changeRatio;
+            //StartCoroutine(Intercambiador());
+
+            targetScale = TamanioOriginal * changeRatio;
+
+            //maxSpeed = maxSpeed * changeRatio;
+            //maxSpeedBackwards = maxSpeedBackwards * changeRatio;
+        }
+        else
+        {
+            //diferenciaSonido /= changeRatio;
+            //StartCoroutine(Intercambiador());
+
+            targetScale = 1;
+
+            transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            //maxSpeed = maxSpeed / changeRatio;
+            //maxSpeedBackwards = maxSpeedBackwards / changeRatio;
+
+        }
+        changeSize = !changeSize;
     }
 
     private void Rotate()

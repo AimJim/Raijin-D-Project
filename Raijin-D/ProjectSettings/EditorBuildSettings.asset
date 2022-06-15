@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Circuitos/CircuitoCasino.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Circuitos/Circuito3.unity
+    guid: 7e169be71e50e274eae1f26496e245f5
   m_configObjects: {}
