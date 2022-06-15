@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
     {
         sonidoEnemigo = GetComponent<AudioSource>();
         carRB = GetComponent<Rigidbody>();
-        currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, 2));
+        if(checkPoints.Count !=0) currentDirection = checkPoints[currentCheckPoint].transform.GetChild(Random.Range(0, 2));
     }
     private void FixedUpdate()
     {

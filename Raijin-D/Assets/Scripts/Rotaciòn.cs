@@ -41,8 +41,8 @@ public class Rotaciòn : MonoBehaviour
     private void Awake()
     {
         plataforma = gameObject;
-        
         vehiculo = Instantiate(listaAutos[posLista]);
+        Destroy(vehiculo.GetComponent<EnemyController>());
         vehiculo.transform.SetParent(gameObject.transform);
         Destroy(vehiculo.GetComponentInChildren<Camera>());
         Destroy(vehiculo.GetComponentInChildren<NitroBehaviur>());
@@ -55,7 +55,6 @@ public class Rotaciòn : MonoBehaviour
         Destroy(vehiculo.GetComponentInChildren<SpeedView>());
         Destroy(vehiculo.GetComponentInChildren<TMP_Text>());
         CarAndCircuit.instance.setCar(listaAutos[posLista]);
-        posLista = (posLista + 1) % listaAutos.Length;
         vehiculo.transform.position = Spawn.position;
 
         selectAction = inputActionAsset.FindAction("Steer");
@@ -145,7 +144,6 @@ public class Rotaciòn : MonoBehaviour
     }
     private void ColocarVehiculo()
     {
-        
         vehiculo = Instantiate(listaAutos[posLista]);
         vehiculo.transform.SetParent(gameObject.transform);
         Destroy(vehiculo.GetComponentInChildren<Camera>());
