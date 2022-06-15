@@ -66,6 +66,7 @@ public class ExplosionAndRespawn : MonoBehaviour
                 Time.timeScale = 0f;
                 texto.text = "Ganaste";
                 texto.color = new Color(0x00, 0xFF, 0x00);
+                
                 canvas.SetActive(true);
             }
 
@@ -98,6 +99,7 @@ public class ExplosionAndRespawn : MonoBehaviour
             Time.timeScale = 0f;
             texto.text = "Perdiste";
             texto.color = new Color(0xFF, 0x00, 0x00);
+            
             canvas.SetActive(true);
         }
 
